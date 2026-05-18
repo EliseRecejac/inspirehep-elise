@@ -10,7 +10,7 @@ import {
 } from '../utils';
 import storage from '../../../common/storage';
 import { BACKOFFICE_LOGIN_API } from '../../../common/routes';
-import { WorkflowStatuses, WorkflowTypes } from '../../constants';
+import { WorkflowTypes } from '../../constants';
 import { WorkflowDecisions } from '../../../common/constants';
 
 jest.mock('../../../common/storage');
@@ -87,12 +87,12 @@ describe('filterByProperty', () => {
 
 describe('formatDateTime', () => {
   it('should return an object with formatted date and time for a valid date', () => {
-    const rawDateTime = '2024-02-11T15:30:00Z';
+    const rawDateTime = '2024-02-11T15:30:00.134496+00:00';
     const result = formatDateTime(rawDateTime);
 
     expect(result).toEqual({
-      date: '2024-02-11',
-      time: '15:30',
+      date: '2/11/2024',
+      time: '03:30 PM',
     });
   });
 

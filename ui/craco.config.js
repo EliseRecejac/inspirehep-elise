@@ -39,6 +39,7 @@ module.exports = {
   jest: {
     configure(config) {
       config.transformIgnorePatterns = ['/node_modules/(?!antd|rc-*)/.+\\.js$'];
+      config.globalSetup = '<rootDir>/src/jestGlobalSetup.js';
       return config;
     },
   },

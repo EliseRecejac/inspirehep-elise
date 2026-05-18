@@ -301,10 +301,18 @@ export const formatDateTime = (
   rawDateTime: string
 ): { date: string; time: string } | undefined => {
   try {
-    const isoString = new Date(rawDateTime).toISOString();
-    const [datePart, timePart] = isoString.split('T');
-    const formattedTimePart = timePart.slice(0, 5);
-    return { date: datePart, time: formattedTimePart };
+    const isoString = new Date(rawDateTime);
+    if (Number.isNaN(isoString.getTime())) {
+      return undefined;
+    }
+    const [datePart, timePart] = [
+      isoString.toLocaleDateString(),
+      isoString.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+    ];
+    return { date: datePart, time: timePart };
   } catch (error) {
     return undefined;
   }
